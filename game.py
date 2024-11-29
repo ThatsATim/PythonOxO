@@ -51,10 +51,8 @@ def checkState(board):
             counter += 1
             if column == "O":
                 oList.append(counter)
-                print(oList)
             elif column == "X":
                 xList.append(counter)
-                print(xList)
 
     combinations = [
         [1, 2, 3],
@@ -77,8 +75,10 @@ def checkState(board):
                 xCounter += 1
         if oCounter == 3:
             game["running"] = False
+            print("O WINS!")
         if xCounter == 3:
             game["running"] = False
+            print("X WINS!")
 
 
 game = {
