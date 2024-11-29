@@ -16,8 +16,13 @@ def playTurn(board, player):
     print("PLAYER " + player + "'s TURN")
     spot = input("Pick a spot to play, look at your numpad: ")
     coordinates = getValue(spot)
-    board[coordinates[0]][coordinates[1]] = player
-    checkState(board)
+    if board[coordinates[0]][coordinates[1]] != "-":
+        printBoard(playBoard)
+        print("Can't overwrite an existing spot!")
+        playTurn(board, player)
+    else:
+        board[coordinates[0]][coordinates[1]] = player
+        checkState(board)
 
 
 def getValue(position):
@@ -75,10 +80,12 @@ def checkState(board):
                 xCounter += 1
         if oCounter == 3:
             game["running"] = False
-            print("O WINS!")
+            printBoard(playBoard)
+            print("O WINS! It took " + str(game["round"]) + " turns")
         if xCounter == 3:
             game["running"] = False
-            print("X WINS!")
+            printBoard(playBoard)
+            print("X WINS! It took" + str(game["round"]) + "turns")
 
 
 game = {
@@ -92,7 +99,6 @@ while game["running"]:
     playTurn(playBoard, game["player"])
     if game["player"] == "O":
         game["player"] = "X"
+        game["round"] += 1
     else:
         game["player"] = "O"
-
-    game["round"] += 1
