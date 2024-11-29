@@ -77,10 +77,8 @@ def checkState(board):
                 xCounter += 1
         if oCounter == 3:
             game["running"] = False
-            print("O WINS!")
         if xCounter == 3:
             game["running"] = False
-            print("X WINS!")
 
 
 game = {
